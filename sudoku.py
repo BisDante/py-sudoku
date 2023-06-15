@@ -36,16 +36,10 @@ def valid(table, num, pos):
     for i in range(len(table)):
 
         if table[pos[0]][i] == num and pos[1] != i:
-            print(f"invalid number {num} at position {pos}," +
-                  f"coincides with the number at position {pos[0]}, {i}")
-            valid = False
-            break
+            return False
         
         elif table[i][pos[1]] == num and pos[0] != i:
-            print(f"invalid number {num} at position {pos}," +
-                  f"coincides with the number at position {i}, {pos[1]}")
-            valid = False
-            break
+            return False
 
     box_x = pos[0] // 3
     box_y = pos[1] // 3
@@ -53,13 +47,9 @@ def valid(table, num, pos):
     for i in range(box_x * 3, box_x * 3 + 3):
         for j in range(box_y * 3, box_y * 3 + 3):
             if table[i][j] == num and (i, j) != pos:
-                valid = False
-                break
-        
-        if not valid:
-            break
+                return False
 
-    return valid
+    return True
 
 
 def find_empty(table):
@@ -79,7 +69,7 @@ def solve(table):
         row, col = empty_pos
 
     for i in range(1,10):
-        if valid(table, i (row, col)):
+        if valid(table, i,(row, col)):
             table[row][col] = i
 
             if solve(table):
@@ -90,4 +80,5 @@ def solve(table):
     return False
 
 print_table()
-valid(table, 4, (2, 3))
+solve(table)
+print_table()
