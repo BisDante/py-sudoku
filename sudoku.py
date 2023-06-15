@@ -78,5 +78,16 @@ def solve(table):
     else:
         row, col = empty_pos
 
+    for i in range(1,10):
+        if valid(table, i (row, col)):
+            table[row][col] = i
+
+            if solve(table):
+                return True
+            
+            table[row][col] = 0
+
+    return False
+
 print_table()
 valid(table, 4, (2, 3))
